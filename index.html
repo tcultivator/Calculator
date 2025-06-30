@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Basic Calculator</title>
+</head>
+
+<body>
+    <div class="div1">
+        <label id="value" maxLength="13"></label>
+        <div class="div2">
+            <button onclick="percentageFormula('%')">%</button>
+            <button class="des" onclick="myCE('CE')">CE</button>
+            <button onclick="myCE('C')">C</button>
+            <button onclick="del('Del')">Del</button>
+            <button onclick="myfunction('1')">1</button>
+            <button onclick="myfunction('2')">2</button>
+            <button onclick="myfunction('3')">3</button>
+            <button onclick="myOperator('/')">/</button>
+            <button onclick="myfunction('4')">4</button>
+            <button onclick="myfunction('5')">5</button>
+            <button onclick="myfunction('6')">6</button>
+            <button onclick="myOperator('*')">*</button>
+            <button onclick="myfunction('7')">7</button>
+            <button onclick="myfunction('8')">8</button>
+            <button onclick="myfunction('9')">9</button>
+            <button onclick="myOperator('+')">+</button>
+            <button onclick="myOperator('-')">-</button>
+            <button onclick="myfunction('0')">0</button>
+            <button onclick="myfunction('.')">.</button>
+            <button class="des" onclick="compute()">=</button>
+        </div>
+
+        <div class="div3">
+            <button onclick="percentageFormula('%')">%</button>
+            <button class="des" onclick="myCE('CE')">CE</button>
+            <button onclick="myCE('C')">C</button>
+            <button onclick="del('Del')">Del</button>
+            <button onclick="myfunction('7')">7</button>
+            <button onclick="myfunction('8')">8</button>
+            <button onclick="myfunction('9')">9</button>
+
+            <button onclick="myOperator('/')">/</button>
+            <button onclick="myfunction('4')">4</button>
+            <button onclick="myfunction('5')">5</button>
+            <button onclick="myfunction('6')">6</button>
+            <button onclick="myOperator('*')">*</button>
+            <button onclick="myfunction('1')">1</button>
+            <button onclick="myfunction('2')">2</button>
+            <button onclick="myfunction('3')">3</button>
+            <button onclick="myOperator('+')">+</button>
+            <button onclick="myOperator('-')">-</button>
+            <button onclick="myfunction('0')">0</button>
+            <button onclick="myfunction('.')">.</button>
+            <button class="des" onclick="compute()">=</button>
+        </div>
+
+
+    </div>
+    <script>
+
+        let prev = '';
+        let current = '';
+        let operator = '';
+
+
+
+        function myfunction(number) {
+
+            if (current.length < 9) {
+                current += number;
+                document.getElementById("value").innerHTML = `${prev} ${operator} ${current}`;
+            }
+
+
+
+
+        }
+        function myOperator(operation) {
+            if (prev != '' && operator != '%') {
+                compute();
+            }
+            else if (current != '') {
+                console.log('eto gumagana pag click ng mga operator?');
+                operator = operation;
+                prev = parseFloat(current);
+                current = '';
+                document.getElementById("value").innerHTML = `${prev} ${operator} ${current}`;
+                console.log(`${prev} ${operator} ${current}`);
+
+            }
+
+
+
+
+
+
+
+
+        }
+        function del(Del) {
+
+
+            if (current != '' && operator == '') {
+                console.log('ano to? ', current);
+                newCurrent = current.toString();
+                finalCurrent = newCurrent.slice(0, -1);
+                console.log('length is ', finalCurrent.length);
+                if (finalCurrent.length != 0) {
+                    current = parseInt(finalCurrent);
+                    operator = '';
+                    document.getElementById("value").textContent = `${current}`;
+                    console.log(' value is ', current);
+                }
+                else {
+
+                    current = '';
+                    prev = '';
+                    operator = '';
+                    document.getElementById("value").innerHTML = 0;
+                    console.log('eto new current', current);
+                }
+            }
+            else if (prev != '' && current != '') {
+                newCurrent = current.toString();
+                finalCurrent = newCurrent.slice(0, -1);
+                if (finalCurrent.length != 0) {
+                    current = parseInt(finalCurrent);
+                    document.getElementById("value").innerHTML = `${prev} ${operator} ${current}`;
+                    console.log(' value is ', current);
+                }
+                else {
+                    current = '';
+                    current = current.toString();
+                    document.getElementById("value").innerHTML = `${prev} ${operator} ${current}`;
+                    console.log('eto new current', current);
+
+                }
+
+
+            }
+            else if (operator != '' && current == '') {
+                operator = '';
+                current = prev;
+                console.log('eto ung sa delete ng operator', current);
+                prev = '';
+                document.getElementById("value").innerHTML = `${current} ${operator}`;
+
+
+            }
+
+
+
+
+
+
+
+
+        }
+        function compute() {
+            switch (operator) {
+                case "+":
+                    if (current != '') {
+                        current = document.getElementById("value").innerHTML = prev + parseFloat(current);
+                        prev = '';
+                        operator = '';
+                    }
+                    break;
+                case "-":
+                    if (current != '') {
+                        current = document.getElementById("value").innerHTML = prev - parseFloat(current);
+                        prev = '';
+                        operator = '';
+                    }
+                    break;
+                case "*":
+                    if (current != '') {
+                        current = document.getElementById("value").innerHTML = prev * parseFloat(current);
+                        prev = '';
+                        operator = '';
+                    }
+                    break;
+                case "/":
+                    if (current != '') {
+                        current = document.getElementById("value").innerHTML = prev / parseFloat(current);
+                        prev = '';
+                        operator = '';
+                    }
+                    break;
+
+
+
+                default:
+                    break;
+            }
+
+
+        }
+
+        function myCE(remove) {
+            switch (remove) {
+                case "CE":
+                    if (prev != '') {
+                        current = '';
+                        document.getElementById("value").innerHTML = `${prev} ${operator} ${current}`;
+                    }
+                    else {
+                        current = '';
+                        document.getElementById("value").innerHTML = 0;
+                    }
+
+                    break;
+                case "C":
+
+                    prev = '';
+                    operator = '';
+                    current = '';
+                    document.getElementById("value").innerHTML = 0;
+
+
+                    break;
+
+                default:
+                    break;
+            }
+
+
+        }
+        function percentageFormula() {
+            if (prev != '') {
+                firstStep = current * prev;
+                lastStep = firstStep / 100;
+                current = lastStep;
+                document.getElementById("value").innerHTML = `${prev} ${operator} ${current}`;
+            }
+            else {
+                prev = '';
+                operator = '';
+                current = '';
+                document.getElementById("value").innerHTML = 0;
+            }
+
+        }
+
+    </script>
+</body>
+
+</html>
