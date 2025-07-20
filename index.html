@@ -9,54 +9,38 @@
 </head>
 
 <body>
-    <div class="div1">
-        <label id="value" maxLength="13"></label>
-        <div class="div2">
-            <button onclick="percentageFormula('%')">%</button>
-            <button class="des" onclick="myCE('CE')">CE</button>
-            <button onclick="myCE('C')">C</button>
-            <button onclick="del('Del')">Del</button>
-            <button onclick="myfunction('1')">1</button>
-            <button onclick="myfunction('2')">2</button>
-            <button onclick="myfunction('3')">3</button>
-            <button onclick="myOperator('/')">/</button>
-            <button onclick="myfunction('4')">4</button>
-            <button onclick="myfunction('5')">5</button>
-            <button onclick="myfunction('6')">6</button>
-            <button onclick="myOperator('*')">*</button>
-            <button onclick="myfunction('7')">7</button>
-            <button onclick="myfunction('8')">8</button>
-            <button onclick="myfunction('9')">9</button>
-            <button onclick="myOperator('+')">+</button>
-            <button onclick="myOperator('-')">-</button>
-            <button onclick="myfunction('0')">0</button>
-            <button onclick="myfunction('.')">.</button>
-            <button class="des" onclick="compute()">=</button>
+
+    <div id="mainBody">
+
+        <div class="div1">
+            <div id="output">
+                <label id="value" maxLength="13">0</label>
+            </div>
+
+            <div class="div2">
+                <button onclick="percentageFormula('%')">%</button>
+                <button class="des" onclick="myCE('CE')">CE</button>
+                <button onclick="myCE('C')">C</button>
+                <button onclick="del('Del')">Del</button>
+                <button onclick="myfunction('1')">1</button>
+                <button onclick="myfunction('2')">2</button>
+                <button onclick="myfunction('3')">3</button>
+                <button onclick="myOperator('/')">/</button>
+                <button onclick="myfunction('4')">4</button>
+                <button onclick="myfunction('5')">5</button>
+                <button onclick="myfunction('6')">6</button>
+                <button onclick="myOperator('*')">*</button>
+                <button onclick="myfunction('7')">7</button>
+                <button onclick="myfunction('8')">8</button>
+                <button onclick="myfunction('9')">9</button>
+                <button onclick="myOperator('+')">+</button>
+                <button onclick="myOperator('-')">-</button>
+                <button onclick="myfunction('0')">0</button>
+                <button onclick="myfunction('.')">.</button>
+                <button class="des" onclick="compute()">=</button>
+            </div>
         </div>
 
-        <div class="div3">
-            <button onclick="percentageFormula('%')">%</button>
-            <button class="des" onclick="myCE('CE')">CE</button>
-            <button onclick="myCE('C')">C</button>
-            <button onclick="del('Del')">Del</button>
-            <button onclick="myfunction('7')">7</button>
-            <button onclick="myfunction('8')">8</button>
-            <button onclick="myfunction('9')">9</button>
-
-            <button onclick="myOperator('/')">/</button>
-            <button onclick="myfunction('4')">4</button>
-            <button onclick="myfunction('5')">5</button>
-            <button onclick="myfunction('6')">6</button>
-            <button onclick="myOperator('*')">*</button>
-            <button onclick="myfunction('1')">1</button>
-            <button onclick="myfunction('2')">2</button>
-            <button onclick="myfunction('3')">3</button>
-            <button onclick="myOperator('+')">+</button>
-            <button onclick="myOperator('-')">-</button>
-            <button onclick="myfunction('0')">0</button>
-            <button onclick="myfunction('.')">.</button>
-            <button class="des" onclick="compute()">=</button>
-        </div>
 
 
     </div>
