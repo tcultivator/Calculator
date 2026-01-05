@@ -4,232 +4,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flux Calculator</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <title>Basic Calculator</title>
 </head>
 
 <body>
 
-    <div id="mainBody">
+    <div class="glass-background"></div>
 
-        <div class="div1">
-            <div id="output">
-                <label id="value" maxLength="13">0</label>
+    <div class="calc-container">
+        <div class="calc-card">
+            <header class="calc-header">
+                <span class="logo">CALC<span>ULATOR</span></span>
+                <button class="btn-home" onclick="window.location.replace('index.html')">
+                    <i class="fa-solid fa-house"></i>
+                </button>
+            </header>
+
+            <div class="display-section">
+                <div id="history" class="history-text"></div>
+                <div id="value" class="main-value">0</div>
             </div>
 
-            <div class="div2">
-                <button onclick="percentageFormula('%')">%</button>
-                <button class="des" onclick="myCE('CE')">CE</button>
-                <button onclick="myCE('C')">C</button>
-                <button onclick="del('Del')">Del</button>
+            <div class="button-grid">
+                <!-- Row 1 -->
+                <button class="btn-alt" onclick="percentageFormula()">%</button>
+                <button class="btn-alt" onclick="myCE('CE')">CE</button>
+                <button class="btn-alt" onclick="myCE('C')">C</button>
+                <button class="btn-alt" onclick="del()"><i class="fa-solid fa-delete-left"></i></button>
+
+                <!-- Row 2 -->
                 <button onclick="myfunction('1')">1</button>
                 <button onclick="myfunction('2')">2</button>
                 <button onclick="myfunction('3')">3</button>
-                <button onclick="myOperator('/')">/</button>
+                <button class="btn-op" onclick="myOperator('/')">÷</button>
+
+                <!-- Row 3 -->
                 <button onclick="myfunction('4')">4</button>
                 <button onclick="myfunction('5')">5</button>
                 <button onclick="myfunction('6')">6</button>
-                <button onclick="myOperator('*')">*</button>
+                <button class="btn-op" onclick="myOperator('*')">×</button>
+
+                <!-- Row 4 -->
                 <button onclick="myfunction('7')">7</button>
                 <button onclick="myfunction('8')">8</button>
                 <button onclick="myfunction('9')">9</button>
-                <button onclick="myOperator('+')">+</button>
-                <button onclick="myOperator('-')">-</button>
+                <button class="btn-op" onclick="myOperator('+')">+</button>
+
+                <!-- Row 5 -->
+                <button class="btn-op" onclick="myOperator('-')">-</button>
                 <button onclick="myfunction('0')">0</button>
                 <button onclick="myfunction('.')">.</button>
-                <button class="des" onclick="compute()">=</button>
+                <button class="btn-equal" onclick="compute()">=</button>
             </div>
         </div>
-
-
-
     </div>
-    <script>
 
-        let prev = '';
-        let current = '';
-        let operator = '';
-
-
-
-        function myfunction(number) {
-
-            if (current.length < 9) {
-                current += number;
-                document.getElementById("value").innerHTML = `${prev} ${operator} ${current}`;
-            }
-
-
-
-
-        }
-        function myOperator(operation) {
-            if (prev != '' && operator != '%') {
-                compute();
-            }
-            else if (current != '') {
-                console.log('eto gumagana pag click ng mga operator?');
-                operator = operation;
-                prev = parseFloat(current);
-                current = '';
-                document.getElementById("value").innerHTML = `${prev} ${operator} ${current}`;
-                console.log(`${prev} ${operator} ${current}`);
-
-            }
-
-
-
-
-
-
-
-
-        }
-        function del(Del) {
-
-
-            if (current != '' && operator == '') {
-                console.log('ano to? ', current);
-                newCurrent = current.toString();
-                finalCurrent = newCurrent.slice(0, -1);
-                console.log('length is ', finalCurrent.length);
-                if (finalCurrent.length != 0) {
-                    current = parseInt(finalCurrent);
-                    operator = '';
-                    document.getElementById("value").textContent = `${current}`;
-                    console.log(' value is ', current);
-                }
-                else {
-
-                    current = '';
-                    prev = '';
-                    operator = '';
-                    document.getElementById("value").innerHTML = 0;
-                    console.log('eto new current', current);
-                }
-            }
-            else if (prev != '' && current != '') {
-                newCurrent = current.toString();
-                finalCurrent = newCurrent.slice(0, -1);
-                if (finalCurrent.length != 0) {
-                    current = parseInt(finalCurrent);
-                    document.getElementById("value").innerHTML = `${prev} ${operator} ${current}`;
-                    console.log(' value is ', current);
-                }
-                else {
-                    current = '';
-                    current = current.toString();
-                    document.getElementById("value").innerHTML = `${prev} ${operator} ${current}`;
-                    console.log('eto new current', current);
-
-                }
-
-
-            }
-            else if (operator != '' && current == '') {
-                operator = '';
-                current = prev;
-                console.log('eto ung sa delete ng operator', current);
-                prev = '';
-                document.getElementById("value").innerHTML = `${current} ${operator}`;
-
-
-            }
-
-
-
-
-
-
-
-
-        }
-        function compute() {
-            switch (operator) {
-                case "+":
-                    if (current != '') {
-                        current = document.getElementById("value").innerHTML = prev + parseFloat(current);
-                        prev = '';
-                        operator = '';
-                    }
-                    break;
-                case "-":
-                    if (current != '') {
-                        current = document.getElementById("value").innerHTML = prev - parseFloat(current);
-                        prev = '';
-                        operator = '';
-                    }
-                    break;
-                case "*":
-                    if (current != '') {
-                        current = document.getElementById("value").innerHTML = prev * parseFloat(current);
-                        prev = '';
-                        operator = '';
-                    }
-                    break;
-                case "/":
-                    if (current != '') {
-                        current = document.getElementById("value").innerHTML = prev / parseFloat(current);
-                        prev = '';
-                        operator = '';
-                    }
-                    break;
-
-
-
-                default:
-                    break;
-            }
-
-
-        }
-
-        function myCE(remove) {
-            switch (remove) {
-                case "CE":
-                    if (prev != '') {
-                        current = '';
-                        document.getElementById("value").innerHTML = `${prev} ${operator} ${current}`;
-                    }
-                    else {
-                        current = '';
-                        document.getElementById("value").innerHTML = 0;
-                    }
-
-                    break;
-                case "C":
-
-                    prev = '';
-                    operator = '';
-                    current = '';
-                    document.getElementById("value").innerHTML = 0;
-
-
-                    break;
-
-                default:
-                    break;
-            }
-
-
-        }
-        function percentageFormula() {
-            if (prev != '') {
-                firstStep = current * prev;
-                lastStep = firstStep / 100;
-                current = lastStep;
-                document.getElementById("value").innerHTML = `${prev} ${operator} ${current}`;
-            }
-            else {
-                prev = '';
-                operator = '';
-                current = '';
-                document.getElementById("value").innerHTML = 0;
-            }
-
-        }
-
-    </script>
+    <script src="script.js"></script>
 </body>
 
 </html>
